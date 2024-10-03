@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            position: relative;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="70">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">MyWebsite</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="container">
+        <h1 class="text-center">Welcome to My Website</h1>
+        <p class="text-center">This is the home section.</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="bg-light container">
+        <h2 class="text-center">About Us</h2>
+        <p class="text-center">This is the about us section.</p>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="container">
+        <h2 class="text-center">Register</h2>
+        <form id="registerForm" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required>
+                <div class="invalid-feedback">Please enter a password.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </section>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <!-- Firebase Auth SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <!-- Firebase Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyBDYZz5LMM4371Vxwqr5TXvujtdytI-zrU",
+  authDomain: "lifeintojesuschurch.firebaseapp.com",
+  projectId: "lifeintojesuschurch",
+  storageBucket: "lifeintojesuschurch.appspot.com",
+  messagingSenderId: "4645318814",
+  appId: "1:4645318814:web:eb34828cc0862483b6cb8f",
+  measurementId: "G-DJ5R06XJYY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        // Form validation and submission
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var form = document.getElementById('registerForm');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        // Get form values
+                        var name = document.getElementById('name').value;
+                        var email = document.getElementById('email').value;
+                        var password = document.getElementById('password').value;
+
+                        // Firebase Authentication
+                        firebase.auth().createUserWithEmailAndPassword(email, password)
+                            .then((userCredential) => {
+                                var user = userCredential.user;
+                                // Store user info in Firestore
+                                db.collection("users").doc(user.uid).set({
+                                    name: name,
+                                    email: email
+                                }).then(() => {
+                                    alert('User registered successfully!');
+                                }).catch((error) => {
+                                    console.error("Error adding document: ", error);
+                                });
+                            })
+                            .catch((error) => {
+                                var errorCode = error.code;
+                                var errorMessage = error.message;
+                                alert(errorMessage);
+                            });
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>
