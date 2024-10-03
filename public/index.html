@@ -1,150 +1,540 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Into Jesus Church</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      position: relative;
+    }
+    section {
+      padding: 60px 0;
+    }
+    .navbar-nav a {
+      cursor: pointer;
+    }
+    #home {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #home video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+    #home .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+    .btn-custom {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+    }
+    .navbar-brand img {
+      height: 40px;
+      width: auto;
+    }
+    footer a {
+  color: #fff;
+  text-decoration: none;
+}
 
-        section {
-            padding: 60px 0;
-        }
-    </style>
+footer a:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+footer a img {
+  vertical-align: middle;
+}
+
+footer a:hover img {
+  opacity: 0.8;
+}
+
+  </style>
 </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<body data-spy="scroll" data-target="#navbarNav" data-offset="70">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">MyWebsite</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#register">Register</a>
-                </li>
-            </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">
+    <img src="assets/logo.jpeg" alt="Church Logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#sermon">Sermon</a></li>
+      <li class="nav-item"><a class="nav-link" href="#pillars">Pillars</a></li>
+      <li class="nav-item"><a class="nav-link" href="#who-we-are">Who We Are</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- Home Section with Video Background -->
+<section id="home">
+    <video autoplay muted loop>
+      <source src="https://firebasestorage.googleapis.com/v0/b/lifeintojesuschurch.appspot.com/o/videos%2Fcompl.mp4?alt=media&token=fda00cbf-a521-4ed5-9cac-e57a196617fb" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="overlay">
+      <h1>Welcome to Our Church</h1>
+      <div>
+        <button id="donateBtn" class="btn btn-primary btn-custom">Donate</button>
+        <button id="watchBtn" class="btn btn-secondary btn-custom">Watch</button>
+        <button id="joinBtn" class="btn btn-success btn-custom">Join</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Modal for Donation Form -->
+  <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="donationModalLabel">Donate</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </nav>
-
-    <!-- Home Section -->
-    <section id="home" class="container">
-        <h1 class="text-center">Welcome to My Website</h1>
-        <p class="text-center">This is the home section.</p>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="bg-light container">
-        <h2 class="text-center">About Us</h2>
-        <p class="text-center">This is the about us section.</p>
-    </section>
-
-    <!-- Register Section -->
-    <section id="register" class="container">
-        <h2 class="text-center">Register</h2>
-        <form id="registerForm" class="needs-validation" novalidate>
+        <div class="modal-body">
+          <form>
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required>
-                <div class="invalid-feedback">Please enter your name.</div>
+              <label for="donation-name">Name</label>
+              <input type="text" class="form-control" id="donation-name" placeholder="Enter your name">
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" required>
-                <div class="invalid-feedback">Please enter a valid email address.</div>
+              <label for="donation-phone">Phone Number</label>
+              <input type="tel" class="form-control" id="donation-phone" placeholder="Enter your phone number">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" required>
-                <div class="invalid-feedback">Please enter a password.</div>
+              <label for="donation-country">Country</label>
+              <input type="text" class="form-control" id="donation-country" placeholder="Enter your country">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-group">
+              <label for="donation-amount">Amount</label>
+              <input type="number" class="form-control" id="donation-amount" placeholder="Enter amount">
+            </div>
+            <div class="form-group">
+              <label for="donation-currency">Currency</label>
+              <select class="form-control" id="donation-currency">
+                <option value="USD">USD</option>
+                <option value="RWF">RWF</option>
+                <option value="EURO">EURO</option>
+                <option value="KES">KES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="donation-reason">Reason</label>
+              <select class="form-control" id="donation-reason">
+                <option value="Donate">Donate</option>
+                <option value="Give away">Give Away</option>
+                <option value="Deme">Deme</option>
+                <option value="Thanks Giving">Thanks Giving</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for Membership Form -->
+  <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="memberModalLabel">Become a Member</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="member-name">Name</label>
+              <input type="text" class="form-control" id="member-name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+              <label for="member-email">Email</label>
+              <input type="email" class="form-control" id="member-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+              <label for="member-phone">Phone Number</label>
+              <input type="tel" class="form-control" id="member-phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+              <label for="member-country">Country</label>
+              <input type="text" class="form-control" id="member-country" placeholder="Enter your country">
+            </div>
+            <div class="form-group">
+              <label for="member-marital-status">Marital Status</label>
+              <select class="form-control" id="member-marital-status">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="member-age-range">Age Range</label>
+              <input type="text" class="form-control" id="member-age-range" placeholder="Enter your age range">
+            </div>
+            <div class="form-group">
+              <label for="member-occupation">Occupation</label>
+              <input type="text" class="form-control" id="member-occupation" placeholder="Enter your occupation">
+            </div>
+            <div class="form-group">
+              <label for="member-village">Village</label>
+              <input type="text" class="form-control" id="member-village" placeholder="Enter your village">
+            </div>
+            <div class="form-group">
+              <label for="member-address">Address</label>
+              <input type="text" class="form-control" id="member-address" placeholder="Enter your address">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Faith Information Cards Section -->
+<section id="faith-info" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Our Faith</h2>
+        <p>Learn more about why we worship and how we practice our faith.</p>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Card 1: Welcome -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Welcome</h5>
+            <p class="card-text">We warmly welcome you to join us in celebrating the love of Christ. Together, we are one family under God.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2: Why We Worship -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Why We Worship</h5>
+            <p class="card-text">Worshiping is an act of love, gratitude, and reverence to the Lord. It strengthens our faith and connects us with God’s grace.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3: How We Do It? -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">How We Do It?</h5>
+            <p class="card-text">Through prayer, worship, and acts of kindness, we aim to embody the teachings of Jesus Christ in everything we do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Mission and Vision Section -->
+<section id="mission-vision" class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Our Mission & Vision</h2>
+        <p>Discover our purpose and where we see ourselves in the future.</p>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Card 1: Mission -->
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Mission</h5>
+            <p class="card-text">Our mission is to spread the love, teachings, and compassion of Jesus Christ through worship, service, and community engagement.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2: Vision -->
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Vision</h5>
+            <p class="card-text">Our vision is to be a beacon of hope and a loving family that embraces everyone in our journey toward spiritual growth and fulfillment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sermon" class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Latest Sermons</h2>
+        <p>Watch our latest sermons here.</p>
+      </div>
+    </div>
+    <div id="sermon-videos" class="row">
+      <!-- Sermon videos will be dynamically loaded here -->
+    </div>
+  </div>
+</section>
+<section id="pillars" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Our Pillars of Faith</h2>
+        <p>As followers of Christ, these are the fundamental pillars that guide our faith and actions, rooted in the Word of God and the example of Jesus Christ.</p>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Pillar 1: Faith in God -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Faith in God</h5>
+            <p class="card-text">Our unwavering faith in God is the foundation of all that we do. We trust in His plans, follow His Word, and believe that through Him, all things are possible.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Pillar 2: Love and Compassion -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Love and Compassion</h5>
+            <p class="card-text">We are called to love God and love others as ourselves. Through acts of kindness and compassion, we show the world what it means to live in Christ's love.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Pillar 3: Service to Others -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Service to Others</h5>
+            <p class="card-text">Jesus came to serve, not to be served. As His followers, we commit ourselves to serving others with humility, selflessness, and joy, just as He did.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Pillar 4: Prayer and Worship -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Prayer and Worship</h5>
+            <p class="card-text">Prayer is our direct line to God, and worship is how we glorify Him. We believe in the power of prayer and worship as central to our relationship with the Lord.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Pillar 5: Biblical Teaching -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Biblical Teaching</h5>
+            <p class="card-text">The Bible is the living Word of God. We are committed to studying, teaching, and living out the Scriptures, allowing the truth to guide our lives and actions.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Pillar 6: Fellowship and Unity -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Fellowship and Unity</h5>
+            <p class="card-text">As a body of believers, we are united in Christ. Fellowship strengthens us, and through unity, we reflect God's kingdom, showing the world what it means to be one in Christ.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="who-we-are" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Who We Are</h2>
+        <p>Life in Jesus Christ Church: We are delighted to share Jesus Christ with you! We are a non-denominational, faith-based church whose desire is to deepen your relationship and walk with God.</p>
+      </div>
+    </div>
+
+    <div class="row mt-4 align-items-center">
+      <!-- Card 1: Our Mission (Image on the Right) -->
+      <div class="col-md-6">
+        <h5 class="card-title">Our Mission</h5>
+        <p>To spread the gospel of Jesus Christ through worship, service, and community outreach, aiming to transform lives and bring people closer to God.</p>
+      </div>
+      <div class="col-md-6">
+        <img src="assets/images.jpg" alt="Mission Image" class="img-fluid rounded">
+      </div>
+    </div>
+
+    <div class="row mt-4 align-items-center">
+      <!-- Card 2: Our Values (Image on the Left) -->
+      <div class="col-md-6 order-md-2">
+        <h5 class="card-title">Our Values</h5>
+        <p>We believe in living out the love of Christ by showing kindness, offering support, and building strong, faith-filled relationships within our church and the community.</p>
+      </div>
+      <div class="col-md-6 order-md-1">
+        <img src="assets/download.png" alt="Values Image" class="img-fluid rounded">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us.</p>
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-label="Enter your name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-label="Enter your email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" rows="3" aria-label="Enter your message" placeholder="Enter your message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </section>
+      </div>
+    </div>
+  </div>
+</section><!-- Footer Section -->
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>About Us</h5>
+        <p>Life Into Jesus Church is a community dedicated to spreading the love and teachings of Jesus Christ.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#home" class="text-white">Home</a></li>
+          <li><a href="#sermon" class="text-white">Sermon</a></li>
+          <li><a href="#pillars" class="text-white">Pillars</a></li>
+          <li><a href="#who-we-are" class="text-white">Who We Are</a></li>
+          <li><a href="#contact" class="text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Contact Us</h5>
+        <p><strong>Phone:</strong> <a href="tel:+250783797588" class="text-white">0783 797 588</a></p>
+        <p><strong>Email:</strong> <a href="mailto:info@lifeintojesuschurch.com" class="text-white">info@lifeintojesuschurch.com</a></p>
+        <p><strong>Location:</strong> Bugesera, Mwogo, Bitaba</p>
+        <div class="mt-3">
+          <a href="https://wa.me/250783797588" target="_blank" class="text-white mr-3">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" style="height: 24px;">
+          </a>
+          <a href="https://www.facebook.com/yourchurchpage" target="_blank" class="text-white">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook" style="height: 24px;">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <p>&copy; 2024 Life Into Jesus Church. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
-    <!-- Firebase Auth SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
-    <!-- Firebase Firestore SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyBDYZz5LMM4371Vxwqr5TXvujtdytI-zrU",
-  authDomain: "lifeintojesuschurch.firebaseapp.com",
-  projectId: "lifeintojesuschurch",
-  storageBucket: "lifeintojesuschurch.appspot.com",
-  messagingSenderId: "4645318814",
-  appId: "1:4645318814:web:eb34828cc0862483b6cb8f",
-  measurementId: "G-DJ5R06XJYY"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
 
-        // Form validation and submission
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                var form = document.getElementById('registerForm');
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else {
-                        event.preventDefault();
-                        // Get form values
-                        var name = document.getElementById('name').value;
-                        var email = document.getElementById('email').value;
-                        var password = document.getElementById('password').value;
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-                        // Firebase Authentication
-                        firebase.auth().createUserWithEmailAndPassword(email, password)
-                            .then((userCredential) => {
-                                var user = userCredential.user;
-                                // Store user info in Firestore
-                                db.collection("users").doc(user.uid).set({
-                                    name: name,
-                                    email: email
-                                }).then(() => {
-                                    alert('User registered successfully!');
-                                }).catch((error) => {
-                                    console.error("Error adding document: ", error);
-                                });
-                            })
-                            .catch((error) => {
-                                var errorCode = error.code;
-                                var errorMessage = error.message;
-                                alert(errorMessage);
-                            });
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            }, false);
-        })();
-    </script>
+<script>$(document).ready(function() {
+  
+    // Smooth scrolling for navbar links
+    $(".navbar-nav a").on('click', function(event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+          window.location.hash = hash;
+        });
+      }
+    });
+  
+    // Handle Join Button - Redirect to YouTube channel
+    $('#watchBtn').on('click', function() {
+      window.open('https://www.youtube.com/@LIFEINJESUSTV', '_blank');
+    });
+  
+    // Open Donation Modal
+    $('#donateBtn').on('click', function() {
+      $('#donationModal').modal('show');
+    });
+  
+    // Open Membership Modal
+    $('#joinBtn').on('click', function() {
+      $('#memberModal').modal('show');
+    });
+  
+    // Dynamically load sermon videos
+    const sermons = [
+      { id: 'SAwxUq0kiZY', title: 'Sermon Title 1' },
+      { id: 'I5kj-YsmWjM', title: 'Sermon Title 2' },
+      { id: 'B4h8Upcvwew', title: 'Sermon Title 3' },
+      { id: 'DMw8jH0R6Fg', title: 'Sermon Title 4' }
+    ];
+  
+    sermons.forEach(sermon => {
+      $('#sermon-videos').append(`
+        <div class="col-md-6 mb-4">
+          <figure class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${sermon.id}" allowfullscreen></iframe>
+            <figcaption class="text-center mt-2">${sermon.title}</figcaption>
+          </figure>
+        </div>
+      `);
+    });
+  
+  });
+  
+</script>
 </body>
-
 </html>
